@@ -1,9 +1,8 @@
 FROM public.ecr.aws/lambda/python:3.9
 
-RUN pip install numpy scipy scikit-learn -t /var/task/
+COPY lambda/ ${LAMBDA_TASK_ROOT}/lambdafunction/
+COPY requirements.txt ${LAMBDA_TASK_ROOT}/
 
-COPY lambda/lambda_function.py /var/task/
-COPY lambda/lr_model.pkl /var/task/
-COPY lambda/scaler.pkl /var/task/
+RUN pip install -r requirements.txt
 
-CMD ["lambda_function.lambda_handler"]
+CMD ["lambda.lambda_function.lambda_handler"]
