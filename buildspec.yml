@@ -17,7 +17,7 @@ phases:
       - echo "Running tests..."
       - python -m unittest discover -s tests
       - echo "Creating lambda-deployment.zip..."
-      - zip -r lambda-deployment.zip lambda_function.py
+      - zip -r lambda-deployment.zip lambda/lambda_function.py
   post_build:
     commands:
       - echo "Build completed"
