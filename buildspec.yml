@@ -5,7 +5,10 @@ phases:
     runtime-versions:
       python: 3.9
     commands:
-      - python -m venv venv
+      - apt-get update -y
+      - apt-get install -y python3-venv
+      - python3 -m ensurepip --upgrade
+      - python3 -m venv venv
       - source venv/bin/activate
       - pip install --upgrade pip
       - pip install -r requirements.txt
