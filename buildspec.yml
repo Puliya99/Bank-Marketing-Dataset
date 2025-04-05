@@ -5,13 +5,16 @@ phases:
     runtime-versions:
       python: 3.9
     commands:
+      - python -m venv venv
+      - source venv/bin/activate
+      - pip install --upgrade pip
       - pip install -r requirements.txt
   build:
     commands:
       - echo "Running tests..."
       - python -m unittest discover -s tests
-      - echo "Creating deployment package..."
-      - zip -r lambda-deployment.zip .
+      - echo "Creating lambda-deployment.zip..."
+      - zip -r lambda-deployment.zip lambda_function.py
   post_build:
     commands:
       - echo "Build completed"
